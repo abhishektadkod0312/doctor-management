@@ -7,9 +7,9 @@ on:
     branches: ["master"]
 
 env:
-  PROJECT_ID: fake-app-323017
+  PROJECT_ID: clinic-590016
   REGION: northamerica-northeast1
-  GAR_LOCATION: northamerica-northeast1-docker.pkg.dev/fake-app-323017/repo-1/
+  GAR_LOCATION: abhishektadkod/clinic:tagname
 
 jobs:
   build-push-artifact:
@@ -34,8 +34,8 @@ jobs:
           gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev --quiet
 
       - name: Build image
-        run: docker build . --file DOCKERFILE_LOCATION --tag ${{ env.GAR_LOCATION }}
-        working-directory: WORKING_DIRECTORY
+        run: docker build . --file Dockerfile --tag ${{ env.GAR_LOCATION }}
+        working-directory: .
 
       - name: Push image
         run: docker push ${{ env.GAR_LOCATION }}
